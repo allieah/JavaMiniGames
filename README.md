@@ -22,7 +22,7 @@ To run the file : java -cp . main.MainApp
  
 
 all class files are in the bin folder
-Separation of Source and Compiled Files
+## Separation of Source and Compiled Files
 
 
 Organization:
