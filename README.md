@@ -18,32 +18,32 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
 
 
-To run the file : java -cp . main.MainApp
+## To run the file 
+java -cp . main.MainApp
  
 
-all class files are in the bin folder
 ## Separation of Source and Compiled Files
 
 
-Organization:
+- Organization:
 Keeping source code in the src directory and compiled class files in the bin directory makes the project structure more organized and easier to manage. Developers can quickly find source files and know exactly where to look for compiled files.
 
-Build Process:
+- Build Process:
 During the build process, it's common to compile all the .java files into .class files. By directing the output of the compilation process to the bin directory, the build process doesn't overwrite or mix with the source files.
 
-Deployment:
+- Deployment:
 When deploying a Java application, only the .class files are needed. Having them in a separate bin directory simplifies packaging and deployment.
 
-Version Control:
+- Version Control:
 Source files are usually version-controlled, but compiled files are not. Keeping them in separate directories ensures that only the necessary files are tracked by version control systems like Git.
 
 ## Project structure
 
 MyJavaProject/
-├── src/
-│   ├── main/
-│   │   ├── Game.java
-│   │   └── MainApp.java
+- ├── src/
+- │   ├── main/
+- │   │   ├── Game.java
+- │   │   └── MainApp.java
 │   ├── game1/
 │   │   └── Game1.java
 │   └── game2/
