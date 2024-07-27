@@ -44,17 +44,17 @@ MyJavaProject/
 - │   ├── main/
 - │   │   ├── Game.java
 - │   │   └── MainApp.java
-│   ├── game1/
-│   │   └── Game1.java
-│   └── game2/
-│       └── Game2.java
-├── bin/
-│   ├── main/
-│   │   ├── Game.class
-│   │   └── MainApp.class
-│   ├── game1/
-│   │   └── Game1.class
-│   └── game2/
-│       └── Game2.class
-└── README.md
+- │   ├── game1/
+- │   │   └── Game1.java
+- │   └── game2/
+- │       └── Game2.java
+- ├── bin/
+- │   ├── main/
+- │   │   ├── Game.class
+- │   │   └── MainApp.class
+- │   ├── game1/
+- │   │   └── Game1.class
+- │   └── game2/
+- │       └── Game2.class
+- └── README.md
 
