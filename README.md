@@ -37,7 +37,8 @@ When deploying a Java application, only the .class files are needed. Having them
 Version Control:
 Source files are usually version-controlled, but compiled files are not. Keeping them in separate directories ensures that only the necessary files are tracked by version control systems like Git.
 
-project structure
+## Project structure
+
 MyJavaProject/
 ├── src/
 │   ├── main/
