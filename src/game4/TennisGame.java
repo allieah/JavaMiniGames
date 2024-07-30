@@ -1,3 +1,6 @@
+package game4;
+
+import main.Game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,17 +8,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class TennisGame extends JPanel implements ActionListener, KeyListener {
+public class TennisGame extends JPanel implements Game {
     private int ballX, ballY, ballDirectionX, ballDirectionY;
     private int paddle1Y, paddle2Y;
     private int score1, score2;
     private boolean gameRunning;
+    private JButton backButton; // Add Back button
 
     public TennisGame() {
-        // Set up the game window
         setPreferredSize(new Dimension(800, 600));
         setFocusable(true);
-        addKeyListener(this);
+        setLayout(new BorderLayout()); // Use BorderLayout to position the Back button
 
         // Initialize game variables
         ballX = 400;
@@ -29,11 +32,91 @@ public class TennisGame extends JPanel implements ActionListener, KeyListener {
         gameRunning = true;
 
         // Create a timer to update the game
-        Timer timer = new Timer(-10, this); // Adjusted timer delay for faster speed
+        Timer timer = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (gameRunning) {
+                    updateGame();
+                }
+            }
+        });
         timer.start();
+
+        // Key Bindings
+        InputMap inputMap = getInputMap(WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "movePaddle1Up");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "movePaddle1Down");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "movePaddle2Up");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "movePaddle2Down");
+
+        actionMap.put("movePaddle1Up", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                paddle1Y -= 20;
+                if (paddle1Y < 0) paddle1Y = 0;
+                repaint();
+            }
+        });
+        actionMap.put("movePaddle1Down", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                paddle1Y += 20;
+                if (paddle1Y > getHeight() - 100) paddle1Y = getHeight() - 100;
+                repaint();
+            }
+        });
+        actionMap.put("movePaddle2Up", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                paddle2Y -= 20;
+                if (paddle2Y < 0) paddle2Y = 0;
+                repaint();
+            }
+        });
+        actionMap.put("movePaddle2Down", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                paddle2Y += 20;
+                if (paddle2Y > getHeight() - 100) paddle2Y = getHeight() - 100;
+                repaint();
+            }
+        });
+
+        // Back Button
+        backButton = new JButton("Back");
+        backButton.addActionListener(new BackButtonListener());
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(backButton);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public void paintComponent(Graphics g) {
+    private void updateGame() {
+        // Update the ball's position
+        ballX += ballDirectionX;
+        ballY += ballDirectionY;
+
+        // Check for collisions with paddles and walls
+        if (ballX <= 60 && ballY >= paddle1Y && ballY <= paddle1Y + 100) {
+            ballDirectionX = 1;
+            score1++;
+        } else if (ballX >= 720 && ballY >= paddle2Y && ballY <= paddle2Y + 100) {
+            ballDirectionX = -1;
+            score2++;
+        } else if (ballX <= 0 || ballX >= 780) {
+            ballDirectionX *= -1;
+        }
+
+        if (ballY <= 0 || ballY >= 580) {
+            ballDirectionY *= -1;
+        }
+
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         // Draw the tennis court lines
@@ -56,80 +139,26 @@ public class TennisGame extends JPanel implements ActionListener, KeyListener {
         // Check for a winner
         if (score1 >= 5 || score2 >= 5) {
             gameRunning = false;
-            Font emojiFont = new Font("Segoe UI Emoji", Font.BOLD, 50);
-            g.setFont(emojiFont);
+            g.setFont(new Font("Arial", Font.BOLD, 50));
             if (score1 > score2)
-                g.drawString("Player 1 wins! 🏆", 300, 300);
+                g.drawString("Player 1 wins!", 300, 300);
             else if (score1 == score2)
-                g.drawString("It's a Tie! 🤝", 300, 300);
+                g.drawString("It's a Tie!", 300, 300);
             else
-                g.drawString("Player 2 wins! 🏆", 300, 300);
+                g.drawString("Player 2 wins!", 300, 300);
+        }
+    }
+
+    private class BackButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Switch to MainMenu panel
+            ((CardLayout) getParent().getLayout()).show(getParent(), "MainMenu");
         }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (gameRunning) {
-            // Update the ball's position
-            ballX += ballDirectionX;
-            ballY += ballDirectionY;
-
-            // Check for collisions with paddles and walls
-            if (ballX <= 60 && ballY >= paddle1Y && ballY <= paddle1Y + 100) {
-                ballDirectionX = 1;
-                score1++;
-            } else if (ballX >= 720 && ballY >= paddle2Y && ballY <= paddle2Y + 100) {
-                ballDirectionX = -1;
-                score2++;
-            } else if (ballX <= 0 || ballX >= 780) {
-                ballDirectionX *= -1;
-            }
-
-            if (ballY <= 0 || ballY >= 580) {
-                ballDirectionY *= -1;
-            }
-
-            // Move the paddles
-            if (paddle1Y < 0)
-                paddle1Y = 0;
-            if (paddle1Y > 500)
-                paddle1Y = 500;
-            if (paddle2Y < 0)
-                paddle2Y = 0;
-            if (paddle2Y > 500)
-                paddle2Y = 500;
-
-            repaint();
-        }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            paddle1Y -= 20;
-        } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            paddle1Y += 20;
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            paddle2Y -= 20;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            paddle2Y += 20;
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Tennis Game");
-        TennisGame game = new TennisGame();
-        frame.add(game);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public JPanel getGamePanel() {
+        return this;
     }
 }

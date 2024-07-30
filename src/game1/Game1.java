@@ -11,26 +11,39 @@ public class Game1 implements Game {
     private JButton[][] buttons;
     private char currentPlayer;
     private int moveCount;
+    private JButton backButton; // Add Back button
 
     public Game1() {
         gamePanel = new JPanel();
-        gamePanel.setLayout(new GridLayout(3, 3)); // Set layout for Tic-Tac-Toe grid
-        buttons = new JButton[3][3];
-        currentPlayer = 'X'; // X always goes first
-        moveCount = 0;
+        gamePanel.setLayout(new BorderLayout()); // Use BorderLayout to add Back button
         initializeUI();
     }
 
     private void initializeUI() {
+        JPanel gridPanel = new JPanel();
+        gridPanel.setLayout(new GridLayout(3, 3)); // Set layout for Tic-Tac-Toe grid
+        buttons = new JButton[3][3];
+        currentPlayer = 'X'; // X always goes first
+        moveCount = 0;
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j] = new JButton("-");
                 buttons[i][j].setFont(new Font("Arial", Font.PLAIN, 60));
                 buttons[i][j].setFocusPainted(false);
                 buttons[i][j].addActionListener(new ButtonClickListener(i, j));
-                gamePanel.add(buttons[i][j]);
+                gridPanel.add(buttons[i][j]);
             }
         }
+
+        gamePanel.add(gridPanel, BorderLayout.CENTER);
+
+        // Back Button
+        backButton = new JButton("Back");
+        backButton.addActionListener(new BackButtonListener());
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(backButton);
+        gamePanel.add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private class ButtonClickListener implements ActionListener {
@@ -99,6 +112,13 @@ public class Game1 implements Game {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j].setText("-");
             }
+        }
+    }
+
+    private class BackButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ((CardLayout) gamePanel.getParent().getLayout()).show(gamePanel.getParent(), "MainMenu");
         }
     }
 
