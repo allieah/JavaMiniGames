@@ -3,7 +3,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import game1.Game1;
-import game2.Game2;
+import game2.BrickBreakerGame;
 import game3.HangmanGame;
 import game4.TennisGame;
 
@@ -14,7 +14,6 @@ public class MainApp {
 
     public MainApp() {
         try {
-            // Set the FlatLaf look and feel
             UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
         } catch (Exception e) {
             e.printStackTrace();
@@ -22,9 +21,9 @@ public class MainApp {
 
         frame = new JFrame("Mini Games App");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600); // Increased size to accommodate larger game panels
+        frame.setSize(800, 600);
 
-        gamePanelContainer = new JPanel(new CardLayout()); // Use CardLayout for switching
+        gamePanelContainer = new JPanel(new CardLayout());
 
         mainMenu = createMainMenu();
         gamePanelContainer.add(mainMenu, "MainMenu");
@@ -38,22 +37,22 @@ public class MainApp {
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10, 10, 10, 10); // Add padding
+        gbc.insets = new Insets(10, 10, 10, 10);
 
         JButton game1Button = createButton("Game 1");
-        JButton game2Button = createButton("Game 2");
+        JButton brickBreakerButton = createButton("Brick_Breaker"); // Add Brick Breaker button
         JButton hangmanButton = createButton("Hangman");
         JButton tennisButton = createButton("Tennis");
+       
 
-        // Configure GridBagConstraints for buttons
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 0.5; // 50% of the width
+        gbc.weightx = 0.5;
         panel.add(game1Button, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        panel.add(game2Button, gbc);
+        panel.add(brickBreakerButton, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -63,20 +62,24 @@ public class MainApp {
         gbc.gridy = 1;
         panel.add(tennisButton, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 2; // Position for the Brick Breaker button
+       
+
         return panel;
     }
 
     private JButton createButton(String text) {
         JButton button = new JButton(text);
-        button.setPreferredSize(new Dimension(200, 50)); // Set button size
-        button.setFont(new Font("Arial", Font.PLAIN, 16)); // Set button font
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setFont(new Font("Arial", Font.PLAIN, 16));
         button.addActionListener(e -> {
             switch (text) {
                 case "Game 1":
                     startGame(new Game1());
                     break;
-                case "Game 2":
-                    startGame(new Game2());
+                case "Brick_Breaker":
+                    startGame(new BrickBreakerGame()); // Start Brick Breaker
                     break;
                 case "Hangman":
                     startGame(new HangmanGame());
