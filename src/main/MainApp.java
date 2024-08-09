@@ -73,7 +73,7 @@ public class MainApp {
     }
 
     private JButton createButton(String text) {
-        JButton button = new JButton(text);git
+        JButton button = new JButton(text);
         button.setPreferredSize(new Dimension(200, 50)); // Set button size
         button.setFont(new Font("Arial", Font.PLAIN, 16)); // Set button font
         button.addActionListener(e -> {
