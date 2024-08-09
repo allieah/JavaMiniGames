@@ -6,6 +6,7 @@ import game1.Game1;
 import game2.BrickBreakerGame;
 import game3.HangmanGame;
 import game4.TennisGame;
+import game5.SudokuGame;
 
 public class MainApp {
     private JFrame frame;
@@ -39,15 +40,16 @@ public class MainApp {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        JButton game1Button = createButton("Game 1");
+        JButton game1Button = createButton("Tic-Tac-Toe");
         JButton brickBreakerButton = createButton("Brick_Breaker"); // Add Brick Breaker button
         JButton hangmanButton = createButton("Hangman");
         JButton tennisButton = createButton("Tennis");
+        JButton sudokuButton = createButton("Sudoku"); 
        
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 0.5;
+        gbc.weightx = 0.5; // 50% of the width
         panel.add(game1Button, gbc);
 
         gbc.gridx = 1;
@@ -63,8 +65,8 @@ public class MainApp {
         panel.add(tennisButton, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 2; // Position for the Brick Breaker button
-       
+        gbc.gridy = 2;
+        panel.add(sudokuButton, gbc);
 
         return panel;
     }
@@ -75,7 +77,7 @@ public class MainApp {
         button.setFont(new Font("Arial", Font.PLAIN, 16));
         button.addActionListener(e -> {
             switch (text) {
-                case "Game 1":
+                case "Tic-Tac-Toe":
                     startGame(new Game1());
                     break;
                 case "Brick_Breaker":
@@ -86,6 +88,9 @@ public class MainApp {
                     break;
                 case "Tennis":
                     startGame(new TennisGame());
+                    break;
+                    case "Sudoku":
+                    startGame(new SudokuGame()); // Start Sudoku game
                     break;
             }
         });
