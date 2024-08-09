@@ -21,7 +21,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 ## Commands To Compile and Run The File 
 
 ```bash
-javac -cp ".;lib/flatlaf-2.0.jar" -d bin src/main/*.java src/game1/*.java src/game2/*.java src/game3/*.java src/game4/*.java
+avac -cp ".;lib/flatlaf-2.0.jar" -d bin src/main/*.java src/game1/*.java src/game2/*.java src/game3/*.java src/game4/*.java src/game5/*.java
 ```
 
 ```bash
@@ -55,11 +55,16 @@ JavaMiniGames/
 │   ├── game1/
 │   │   └── Game1.java
 │   ├── game2/
-│   │   └── Game2.java
+│   |   ├── BrickBreakerGame.java
+│   |   ├── Game2.java
+│   |   ├── GamePlay.java
+│   │   └── MapGenerator.java
 │   ├── game3/
 │   │   └── HangmanGame.java
-│   └── game4/
-│       └── TennisGame.java
+│   ├── game4/
+│   |    └── TennisGame.java
+│   └── game5/
+│       └── SudokuGame.java
 ├── bin/
 │   ├── main/
 │   │   ├── Game.class
@@ -67,11 +72,13 @@ JavaMiniGames/
 │   ├── game1/
 │   │   └── Game1.class
 │   ├── game2/
-│   │   └── Game2.class
+│   │   └── BrickBreakerGame.class
 │   ├── game3/
 │   │   └── HangmanGame.class
 │   └── game4/
 │       └── TennisGame.class
+│   └── game5/
+│       └── SudokuGame.class
 ├── lib/
 │   └── flatlaf-2.0.jar
 └── README.md
