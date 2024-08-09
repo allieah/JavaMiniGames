@@ -24,8 +24,9 @@ class MapGenerator {
 		brickWidth = 540/col;
 		brickHeight = 150/row;
 		
-		row1 = (int) (Math.random() * map.length);
-		col1 = (int) (Math.random() * map[0].length);
+		//for random brick to appear (increases difficlty)
+		// row1 = (int) (Math.random() * map.length);
+		// col1 = (int) (Math.random() * map[0].length);
 	}
 	
 	// this draws the bricks
@@ -47,13 +48,14 @@ class MapGenerator {
 					g.fillRect(1*stoneWidth + 100, 1*stoneHeight + 300, stoneWidth, stoneHeight);
 					g.fillRect(1*stoneWidth + 400, 1*stoneHeight + 300, stoneWidth, stoneHeight);
 					
-					 if (i == row1 && j == col1) { // Check if it's a stone		                                    
-						 g.setStroke(new BasicStroke(5));
-							g.setColor(Color.BLACK);
-		                    g.drawRect(j*brickWidth + 80, i*brickHeight + 50, brickWidth, brickHeight);
-		                    g.setColor(Color.GRAY);
-		                    g.fillRect(j * brickWidth + 80, i * brickHeight + 50, brickWidth, brickHeight);
-					 }					  
+					//for random brick to appear (increases difficlty)
+					//  if (i == row1 && j == col1) { // Check if it's a stone		                                    
+					// 	 g.setStroke(new BasicStroke(5));
+					// 		g.setColor(Color.BLACK);
+		            //         g.drawRect(j*brickWidth + 80, i*brickHeight + 50, brickWidth, brickHeight);
+		            //         g.setColor(Color.GRAY);
+		            //         g.fillRect(j * brickWidth + 80, i * brickHeight + 50, brickWidth, brickHeight);
+					//  }					  
 				}
 			}			
 		}	
