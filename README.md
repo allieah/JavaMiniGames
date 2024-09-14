@@ -93,6 +93,34 @@ JavaMiniGames/
 └── README.md
 ```
 
+## Features
+
+- Tic-Tac-Toe
+- Brick Breaker
+- Hangman
+- Tennis
+- Sudoku
+- Modern UI with FlatLaf look and feel
+
+## How to Play
+
+- **Tic-Tac-Toe**: The classic game where you try to get three in a row before your opponent.
+- **Brick Breaker**: Control the paddle to break all the bricks while keeping the ball in play.
+- **Hangman**: Guess the word before the man gets "hanged."
+- **Tennis**: Use the paddle to keep the ball in the air as long as possible.
+- **Sudoku**: Fill the grid so that every row, column, and 3x3 box contains the digits 1-9 without repetition.
+
+
+## **Future Enhancements**
+  Ideas for future improvements or planned features.
+
+```markdown
+## Future Enhancements
+
+- Add multiplayer functionality for Tic-Tac-Toe.
+- Implement a leaderboard system for high scores.
+- Add new mini-games (e.g., connect4, Checkers).
+```
 ## Contributing
 
 Feel free to contribute to GameGalaxy by opening issues or submitting pull requests. Your contributions are greatly appreciated!
