@@ -1,0 +1,36 @@
+# Compiled class files
+bin/
+target/
+*.class
+
+
+# JAR files
+*.jar
+
+# Log files
+*.log
+
+# Directory for IDEs
+.idea/
+*.iml
+*.iws
+
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# NetBeans project files
+nbproject/private/
+build/
+nbbuild/
+dist/
+*.tar.gz
+
+# Maven and Gradle directories
+target/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db

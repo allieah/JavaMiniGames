@@ -8,48 +8,52 @@ import game3.HangmanGame;
 import game4.TennisGame;
 import game5.SudokuGame;
 
-public class MainApp {
-    private JFrame frame;
+public class MainApp extends JFrame {
     private JPanel mainMenu;
     private JPanel gamePanelContainer;
 
     public MainApp() {
         try {
-            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");  // FlatLaf is a modern look and feel
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        frame = new JFrame("Mini Games App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setTitle("Mini Games App");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Use background color for the entire app
+        getContentPane().setBackground(Color.DARK_GRAY);
 
         gamePanelContainer = new JPanel(new CardLayout());
 
         mainMenu = createMainMenu();
         gamePanelContainer.add(mainMenu, "MainMenu");
 
-        frame.add(gamePanelContainer);
-        frame.setVisible(true);
+        add(gamePanelContainer);
     }
 
     private JPanel createMainMenu() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
+        panel.setBackground(Color.DARK_GRAY);  // Background color for main menu
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(10, 10, 10, 10);  // Spacing around buttons
 
-        JButton game1Button = createButton("Tic-Tac-Toe");
-        JButton brickBreakerButton = createButton("Brick_Breaker"); // Add Brick Breaker button
-        JButton hangmanButton = createButton("Hangman");
-        JButton tennisButton = createButton("Tennis");
-        JButton sudokuButton = createButton("Sudoku"); 
-       
+        // Adding game buttons with icons and hover effects
+        JButton game1Button = createButton("Tic-Tac-Toe", "icons/tic-tac-toe.png");
+        JButton brickBreakerButton = createButton("Brick Breaker", "icons/brick-breaker.png"); 
+        JButton hangmanButton = createButton("Hangman", "icons/hangman.png");
+        JButton tennisButton = createButton("Tennis", "icons/tennis.png");
+        JButton sudokuButton = createButton("Sudoku", "icons/sudoku.png");
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 0.5; // 50% of the width
+        gbc.weightx = 0.5;
         panel.add(game1Button, gbc);
 
         gbc.gridx = 1;
@@ -71,30 +75,8 @@ public class MainApp {
         return panel;
     }
 
-    private JButton createButton(String text) {
-        JButton button = new JButton(text);
-        button.setPreferredSize(new Dimension(200, 50));
-        button.setFont(new Font("Arial", Font.PLAIN, 16));
-        button.addActionListener(e -> {
-            switch (text) {
-                case "Tic-Tac-Toe":
-                    startGame(new Game1());
-                    break;
-                case "Brick_Breaker":
-                    startGame(new BrickBreakerGame()); // Start Brick Breaker
-                    break;
-                case "Hangman":
-                    startGame(new HangmanGame());
-                    break;
-                case "Tennis":
-                    startGame(new TennisGame());
-                    break;
-                    case "Sudoku":
-                    startGame(new SudokuGame()); // Start Sudoku game
-                    break;
-            }
-        });
-        return button;
+    private JButton createButton(String text, String iconPath) {
+        return new ModernButton(text, iconPath);
     }
 
     private void startGame(Game game) {
