@@ -1,24 +1,33 @@
+# GameGalaxy
+
+Welcome to **GameGalaxy**, a Java mini-game application featuring a collection of fun and interactive mini-games. This project showcases several classic games with a modern touch and organized structure.
+
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+To get started with **GameGalaxy**, follow these steps to set up your development environment and run the application.
 
-## Folder Structure
+### Prerequisites
 
-The workspace contains two folders by default, where:
+- **Java Development Kit (JDK)**: Make sure you have JDK 8 or higher installed.
+- **Visual Studio Code**: Set up with the Java Extension Pack.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+### Folder Structure
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+The workspace contains the following folders:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- `src`: Contains the source code files.
+- `lib`: Contains external libraries or dependencies.
+- `bin`: Contains compiled `.class` files.
 
-## Dependency Management
+> You can customize the folder structure by updating the settings in `.vscode/settings.json`.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### Dependency Management
 
+Manage your project dependencies through the `JAVA PROJECTS` view in Visual Studio Code. More information can be found in the [Visual Studio Code Java Dependency Documentation](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
 
-## Commands To Compile and Run The File 
+### Commands to Compile and Run the Application
+
+To compile and run the application, use the following commands:
 
 ```bash
 avac -cp ".;lib/flatlaf-2.0.jar" -d bin src/main/*.java src/game1/*.java src/game2/*.java src/game3/*.java src/game4/*.java src/game5/*.java
@@ -83,3 +92,7 @@ JavaMiniGames/
 │   └── flatlaf-2.0.jar
 └── README.md
 ```
+
+## Contributing
+
+Feel free to contribute to GameGalaxy by opening issues or submitting pull requests. Your contributions are greatly appreciated!
