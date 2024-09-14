@@ -34,7 +34,8 @@ avac -cp ".;lib/flatlaf-2.0.jar" -d bin src/main/*.java src/game1/*.java src/gam
 ```
 
 ```bash
-java -cp "bin;lib/flatlaf-2.0.jar" main.MainApp
+java -cp "bin;lib/flatlaf-2.0.jar" main.WelcomeScreen
+
 ```
  
 
@@ -119,7 +120,7 @@ JavaMiniGames/
 
 - Add multiplayer functionality for Tic-Tac-Toe.
 - Implement a leaderboard system for high scores.
-- Add new mini-games (e.g., connect4, Checkers).
+- Add new mini-games (e.g. Connect4, Checkers).
 ```
 ## Contributing
 
